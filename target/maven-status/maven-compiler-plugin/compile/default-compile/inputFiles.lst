@@ -1,8 +1,13 @@
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/models/ProductDTO.java
-/Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/services/impl/LoginServiceImpl.java
+/Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/controllers/AgregarAlCarroServlet.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/controllers/LoginServlet.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/controllers/ProductoServlet.java
+/Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/models/Carro.java
+/Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/controllers/ActualizarCarroServlet.java
+/Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/controllers/VerCarroServlet.java
+/Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/services/impl/LoginServiceImpl.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/services/LoginService.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/services/impl/ProductServiceImpl.java
+/Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/models/ItemCarro.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/controllers/LogoutServlet.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/services/ProductService.java

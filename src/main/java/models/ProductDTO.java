@@ -3,9 +3,9 @@ package models;
 public class ProductDTO {
     private Long id;
     private String name;
-    private String price;
+    private int price;
 
-    public ProductDTO(Long id, String name, String price) {
+    public ProductDTO(Long id, String name, int price) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -19,7 +19,7 @@ public class ProductDTO {
         return name;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 }

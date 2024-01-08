@@ -1,8 +1,13 @@
 controllers/ProductoServlet.class
-controllers/LogoutServlet.class
+models/ItemCarro.class
 services/impl/ProductServiceImpl.class
+controllers/ActualizarCarroServlet.class
 models/ProductDTO.class
+controllers/LogoutServlet.class
+models/Carro.class
+controllers/AgregarAlCarroServlet.class
 services/ProductService.class
 services/impl/LoginServiceImpl.class
+controllers/VerCarroServlet.class
 services/LoginService.class
 controllers/LoginServlet.class
