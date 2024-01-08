@@ -16,11 +16,11 @@ Carro carro = (Carro) session.getAttribute("carro");
 </head>
 <body>
 <h1>Carro de compras</h1>
-<%if (carro == null || carro.getItems().isEmpty()) {%>
+<%if (carro.getItems().isEmpty()) {%>
 <p>Lo Sentimos, no hay productos en el carro de compras</p>
 <%} else {%>
 
-<form name="formcarro" action="<%=request.getContextPath()%>/actualizar-carro" method="post">
+<form name="formcarro" action="<%=request.getContextPath()%>/carro/actualizar" method="post">
   <table>
     <tr>
       <th>Id</th>

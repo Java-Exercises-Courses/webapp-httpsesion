@@ -12,21 +12,18 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.Objects;
 
-
-@WebServlet("/actualizar-carro")
+@WebServlet("/carro/actualizar")
 public class ActualizarCarroServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
 
-        if (session.getAttribute("carro") != null) {
-            Carro carro = (Carro) session.getAttribute("carro");
-            updateCantidades(req,carro);
-            updateProductos(req, carro);
-        }
-        resp.sendRedirect(req.getContextPath() +  "/ver-carro");
+        Carro carro = (Carro) session.getAttribute("carro");
+        updateCantidades(req,carro);
+        updateProductos(req, carro);
+
+        resp.sendRedirect(req.getContextPath() +  "/carro/ver");
     }
 
     private void updateProductos(HttpServletRequest request, Carro carro) {
