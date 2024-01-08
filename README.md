@@ -1,6 +1,6 @@
 ## JAVA project with JSP
 
-Example using JSP and cookies to save user information
+Shopping cart Example using JSP and HttpSession to save user information
 
 ![Diagram](img/httpsession.jpg)
 
