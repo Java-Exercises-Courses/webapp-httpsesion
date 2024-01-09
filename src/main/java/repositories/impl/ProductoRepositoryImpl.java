@@ -1,5 +1,6 @@
 package repositories.impl;
 
+import models.Categoria;
 import models.ProductDTO;
 import repositories.Repository;
 
@@ -47,20 +48,50 @@ public class ProductoRepositoryImpl implements Repository<ProductDTO> {
 
     @Override
     public void save(ProductDTO productDTO) throws SQLException {
+        String sql;
+        if (productDTO.getId() != null && productDTO.getId() > 0) {
+            sql = "UPDATE productos set name=?, price=?, sku=? category_id=? where id=?";
+        } else {
+            sql = "INSERT INTO productos (name, price, sku, category_id, registry_date) VALUES (?,?,?,?,?)";
+        }
 
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, productDTO.getName());
+            stmt.setInt(2, productDTO.getPrice());
+            stmt.setString(3, productDTO.getSku());
+            stmt.setLong(4, productDTO.getCategoria().getId());
+
+            if (productDTO.getId() != null && productDTO.getId() > 0) {
+                stmt.setLong(5, productDTO.getId());
+            } else {
+                stmt.setDate(5, Date.valueOf(productDTO.getFechaRegistro()));
+            }
+
+            stmt.executeUpdate();
+        }
     }
 
     @Override
     public void eliminar(Long id) throws SQLException {
-
+        String sql = "DELETE FROM productos WHERE id=?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+        }
     }
 
     private ProductDTO getProductDTO(ResultSet rs) throws SQLException {
         ProductDTO p = new ProductDTO();
+        Categoria c = new Categoria();
+        c.setId(rs.getLong("category_id"));
+        c.setNombre(rs.getString("categoria"));
+
         p.setId(rs.getLong("id"));
         p.setName(rs.getString("name"));
         p.setPrice(rs.getInt("price"));
-        p.setCategoria(rs.getString("categoria"));
+        p.setSku(rs.getString("sku"));
+        p.setFechaRegistro(rs.getDate("registry_date").toLocalDate());
+        p.setCategoria(c);
         return p;
     }
 

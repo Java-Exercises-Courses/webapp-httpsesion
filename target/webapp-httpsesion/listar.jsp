@@ -19,6 +19,7 @@ String mensaje = (String) request.getAttribute("mensaje");
 <h1>Listado de productos</h1>
 <%if (username.isPresent()){%>
 <div> Hola<%=username.get()%>, bienvenido! </div>
+<p><a href="<%=request.getContextPath()%>/productos/form">Crear [+]</a></p>
 <%}%>
 <table>
   <tr>
@@ -32,7 +33,7 @@ String mensaje = (String) request.getAttribute("mensaje");
   <%for(ProductDTO p: productos){%>
   <tr>
     <td><%=p.getName()%></td>
-    <td><%=p.getCategoria()%></td>
+    <td><%=p.getCategoria().getNombre()%></td>
     <td><%=p.getPrice()%></td>
     <%if (username.isPresent()){%>
     <td><a href="<%=request.getContextPath()%>/carro/agregar?id=<%=p.getId()%>">Agregar al carro</a></td>

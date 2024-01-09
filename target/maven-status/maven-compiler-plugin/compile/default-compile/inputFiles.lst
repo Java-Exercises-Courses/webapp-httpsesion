@@ -4,6 +4,7 @@
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/controllers/LoginServlet.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/controllers/ProductoServlet.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/listeners/AplicacionListener.java
+/Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/models/Categoria.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/models/Carro.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/filters/LoginFilter.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/controllers/ActualizarCarroServlet.java
@@ -12,9 +13,12 @@
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/services/impl/LoginServiceImpl.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/repositories/impl/ProductoRepositoryImpl.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/services/LoginService.java
+/Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/controllers/ProductoFormServlet.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/services/impl/ProductServiceImpl.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/models/ItemCarro.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/controllers/LogoutServlet.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/services/ProductService.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/filters/ConectionFilter.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/services/ServiceException.java
+/Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/repositories/impl/CategoriaRepositoryImpl.java
+/Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/repositories/CategoriaRepository.java

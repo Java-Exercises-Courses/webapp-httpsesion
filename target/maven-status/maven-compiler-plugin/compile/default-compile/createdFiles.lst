@@ -5,8 +5,10 @@ controllers/ActualizarCarroServlet.class
 models/ProductDTO.class
 filters/ConectionFilter.class
 filters/LoginFilter.class
+models/Categoria.class
 services/ServiceException.class
 listeners/AplicacionListener.class
+repositories/CategoriaRepository.class
 controllers/LogoutServlet.class
 util/ConectionDB.class
 models/Carro.class
@@ -15,6 +17,8 @@ services/ProductService.class
 services/impl/LoginServiceImpl.class
 repositories/impl/ProductoRepositoryImpl.class
 controllers/VerCarroServlet.class
+repositories/impl/CategoriaRepositoryImpl.class
+controllers/ProductoFormServlet.class
 services/LoginService.class
 repositories/Repository.class
 controllers/LoginServlet.class
