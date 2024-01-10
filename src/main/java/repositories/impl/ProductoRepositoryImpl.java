@@ -20,7 +20,7 @@ public class ProductoRepositoryImpl implements Repository<ProductDTO> {
         List<ProductDTO> productDTOS = new ArrayList<>();
         try(Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT p.*, c.name as categoria FROM productos as p " +
-                    " INNER JOIN categorias as c ON p.category_id = c.id")) {
+                    " INNER JOIN categorias as c ON p.category_id = c.id ORDER BY p.id ASC")) {
 
             while (rs.next()) {
                 ProductDTO p = getProductDTO(rs);
@@ -50,7 +50,7 @@ public class ProductoRepositoryImpl implements Repository<ProductDTO> {
     public void save(ProductDTO productDTO) throws SQLException {
         String sql;
         if (productDTO.getId() != null && productDTO.getId() > 0) {
-            sql = "UPDATE productos set name=?, price=?, sku=? category_id=? where id=?";
+            sql = "UPDATE productos set name=?, price=?, sku=?, category_id=? where id=?";
         } else {
             sql = "INSERT INTO productos (name, price, sku, category_id, registry_date) VALUES (?,?,?,?,?)";
         }

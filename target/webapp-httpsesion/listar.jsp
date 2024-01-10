@@ -28,6 +28,8 @@ String mensaje = (String) request.getAttribute("mensaje");
     <th>Precio</th>
     <%if (username.isPresent()){%>
     <th>Agregar</th>
+    <th>Editar</th>
+    <th>Eliminar</th>
     <%}%>
   </tr>
   <%for(ProductDTO p: productos){%>
@@ -37,6 +39,9 @@ String mensaje = (String) request.getAttribute("mensaje");
     <td><%=p.getPrice()%></td>
     <%if (username.isPresent()){%>
     <td><a href="<%=request.getContextPath()%>/carro/agregar?id=<%=p.getId()%>">Agregar al carro</a></td>
+    <td><a href="<%=request.getContextPath()%>/productos/form?id=<%=p.getId()%>">Editar</a></td>
+    <td><a onclick="return confirm('¿Seguro que desea eliminar este producto?');"
+            href="<%=request.getContextPath()%>/productos/eliminar?id=<%=p.getId()%>">Eliminar</a></td>
     <%}%>
   </tr>
   <%}%>
