@@ -5,47 +5,43 @@
   Time: 12:48 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" import="java.util.*, models.*" %>
-<%
-List<ProductDTO> productos = (List<ProductDTO>) request.getAttribute("productos");
-Optional<String> username = (Optional<String>) request.getAttribute("username");
-String mensaje = (String) request.getAttribute("mensaje");
-%>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Listado de productos</title>
 </head>
 <body>
 <h1>Listado de productos</h1>
-<%if (username.isPresent()){%>
-<div> Hola<%=username.get()%>, bienvenido! </div>
-<p><a href="<%=request.getContextPath()%>/productos/form">Crear [+]</a></p>
-<%}%>
+<c:if test="${username.present}">
+  <div> Hola ${username.get()}, bienvenido! </div>
+  <p><a href="${pageContext.request.contextPath}/productos/form">Crear [+]</a></p>
+</c:if>
 <table>
   <tr>
     <th>Nombre</th>
     <th>Categoría</th>
     <th>Precio</th>
-    <%if (username.isPresent()){%>
+    <c:if test="${username.present}">
     <th>Agregar</th>
     <th>Editar</th>
     <th>Eliminar</th>
-    <%}%>
+    </c:if>
   </tr>
-  <%for(ProductDTO p: productos){%>
+  <c:forEach items="${productos}" var="p">
   <tr>
-    <td><%=p.getName()%></td>
-    <td><%=p.getCategoria().getNombre()%></td>
-    <td><%=p.getPrice()%></td>
-    <%if (username.isPresent()){%>
-    <td><a href="<%=request.getContextPath()%>/carro/agregar?id=<%=p.getId()%>">Agregar al carro</a></td>
-    <td><a href="<%=request.getContextPath()%>/productos/form?id=<%=p.getId()%>">Editar</a></td>
+    <td>${p.name}</td>
+    <td>${p.categoria.nombre}</td>
+    <td>${p.price}</td>
+    <c:if test="${username.present}">
+    <td><a href="${pageContext.request.contextPath}/carro/agregar?id=${p.id}">Agregar al carro</a></td>
+    <td><a href="${pageContext.request.contextPath}/productos/form?id=${p.id}">Editar</a></td>
     <td><a onclick="return confirm('¿Seguro que desea eliminar este producto?');"
-            href="<%=request.getContextPath()%>/productos/eliminar?id=<%=p.getId()%>">Eliminar</a></td>
-    <%}%>
+            href="${pageContext.request.contextPath}/productos/eliminar?id=${p.id}">Eliminar</a></td>
+    </c:if>
   </tr>
-  <%}%>
+  </c:forEach>
 </table>
-<p><%=mensaje%></p>
+<p>${requestScope.mensaje}</p>
 </body>
 </html>

@@ -5,81 +5,70 @@
   Time: 7:56 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="models.ProductDTO" %>
-<%@ page import="models.Categoria" %>
-<%
-  List<Categoria> categorias = (List<Categoria>) request.getAttribute("categorias");
-  ProductDTO productDTO = (ProductDTO) request.getAttribute("producto");
-  Map<String, String> errores = (Map<String, String>) request.getAttribute("errores");
-  String fecha = productDTO.getFechaRegistro() != null
-          ? productDTO.getFechaRegistro().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-          : "";
-%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Formulario Producto</title>
 </head>
 <body>
 <h1>Formulario Producto</h1>
-<form action="<%=request.getContextPath()%>/productos/form" method="post">
+<form action="${pageContext.request.contextPath}/productos/form" method="post">
   <div>
     <label for="name">Nombre: </label>
     <div>
-      <input type="text" name="name" id="name" value="<%=productDTO.getName() != null ? productDTO.getName() : ""%>">
+      <input type="text" name="name" id="name" value="${producto.name}">
     </div>
-    <%if (errores != null && errores.containsKey("name")){%>
-      <div style="color:#af2424"><%=errores.get("name")%></div>
-    <%}%>
+    <c:if test="${errores != null && errores.containsKey('name')}">
+      <div style="color:#af2424">${errores.name}</div>
+    </c:if>
   </div>
   <div>
     <label for="price">Precio: </label>
     <div>
-      <input type="number" name="price" id="price" value="<%=productDTO.getPrice() != 0 ? productDTO.getPrice() : ""%>">
+      <input type="number" name="price" id="price" value="${producto.price > 0 ? producto.price: ""}">
     </div>
-    <%if (errores != null && errores.containsKey("price")){%>
-      <div style="color:#af2424"><%=errores.get("price")%></div>
-    <%}%>
+    <c:if test="${errores != null && errores.containsKey('price')}">
+      <div style="color:#af2424">${errores.price}</div>
+    </c:if>
   </div>
   <div>
     <label for="sku">Sku: </label>
     <div>
-      <input type="text" name="sku" id="sku" value="<%=productDTO.getSku() != null ? productDTO.getSku() : ""%>">
+      <input type="text" name="sku" id="sku" value="${producto.sku}">
     </div>
-    <%if (errores != null && errores.containsKey("sku")){%>
-    <div style="color:#af2424"><%=errores.get("sku")%></div>
-    <%}%>
+    <c:if test="${errores != null && errores.containsKey('sku')}">
+      <div style="color:#af2424">${errores.sku}</div>
+    </c:if>
   </div>
   <div>
     <label for="fecha_registro">Fecha Registro: </label>
     <div>
-      <input type="date" name="fecha_registro" id="fecha_registro" value="<%=fecha%>">
+      <input type="date" name="fecha_registro" id="fecha_registro" value="${producto.fechaRegistro != null ? producto.fechaRegistro.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) : ""}">
     </div>
-    <%if (errores != null && errores.containsKey("fecha_registro")){%>
-    <div style="color:#af2424"><%=errores.get("fecha_registro")%></div>
-    <%}%>
+    <c:if test="${errores != null && errores.containsKey('fecha_registro')}">
+      <div style="color:#af2424">${errores.fecha_registro}</div>
+    </c:if>
   </div>
   <div>
     <label for="categoria">Categoria</label>
     <div>
       <select name="categoria" id="categoria">
         <option value="">--- seleccionar ---</option>
-        <%for (Categoria c: categorias){%>
-          <option value="<%=c.getId()%>" <%=c.getId().equals(productDTO.getCategoria().getId()) ? "selected" : ""%> ><%=c.getNombre()%></option>
-        <%}%>
+        <c:forEach items="${categorias}" var="c">
+          <option value="${c.id}" ${c.id.equals(producto.categoria.id) ? "selected" : "" }>${c.nombre}</option>
+        </c:forEach>
       </select>
     </div>
-    <%if (errores != null && errores.containsKey("categoria")){%>
-    <div style="color:#af2424"><%=errores.get("categoria")%></div>
-    <%}%>
+    <c:if test="${errores != null && errores.containsKey('categoria')}">
+      <div style="color:#af2424">${errores.categoria}</div>
+    </c:if>
   </div>
   <div>
-  <input type="submit" value="<%=(productDTO.getId() != null && productDTO.getId() > 0) ? "Editar" : "Crear"%>">
+  <input type="submit" value="${(producto.id != null && producto.id > 0) ? "Editar" : "Crear"}">
   </div>
-  <input type="hidden" name="id" value="<%=productDTO.getId()%>">
+  <input type="hidden" name="id" value="${producto.id}">
 </form>
 </body>
 </html>
