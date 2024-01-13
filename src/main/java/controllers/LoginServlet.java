@@ -3,17 +3,19 @@ package controllers;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+import models.Usuario;
 import services.LoginService;
+import services.UserService;
 import services.impl.LoginServiceImpl;
+import services.impl.UserServiceImpl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.util.Optional;
 
 @WebServlet({"/login", "/login.html"})
 public class LoginServlet extends HttpServlet {
-    final static String USERNAME = "admin";
-    final static String PASSWORD = "1234";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,7 +36,10 @@ public class LoginServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        if (USERNAME.equals(username) && PASSWORD.equals(password)) {
+        UserService userService = new UserServiceImpl((Connection) req.getAttribute("conn"));
+        Optional<Usuario> usuarioOptional = userService.getByUsername(username, password);
+
+        if (usuarioOptional.isPresent()) {
             HttpSession session = req.getSession();
 
             session.setAttribute("username", username);
