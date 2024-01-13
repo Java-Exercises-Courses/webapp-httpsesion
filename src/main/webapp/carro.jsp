@@ -8,20 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<html>
-<head>
-    <title>Carro de compras</title>
-</head>
-<body>
-<h1>Carro de compras</h1>
+<jsp:include page="layout/header.jsp" />
+<h3>${title}</h3>
 <c:choose>
 <c:when test="${sessionScope.carro.items.isEmpty()}">
-<p>Lo Sentimos, no hay productos en el carro de compras</p>
+<div class="alert alert-warning">Lo Sentimos, no hay productos en el carro de compras</div>
 </c:when>
 
 <c:otherwise>
 <form name="formcarro" action="${pageContext.request.contextPath}/carro/actualizar" method="post">
-  <table>
+  <table class="table table-hover table-striped">
     <tr>
       <th>Id</th>
       <th>Nombre</th>
@@ -43,17 +39,13 @@
     </c:forEach>
 
     <tr>
-      <td colspan="4" style="text-align: right"> Total </td>
+      <td colspan="5" style="text-align: right"> Total </td>
       <td> ${carro.total} </td>
     </tr>
   </table>
-  <input type="submit" value="Actualizar">
+  <input class="btn btn-primary" type="submit" value="Actualizar">
 </form>
 </c:otherwise>
 </c:choose>
 
-<p><a href="${pageContext.request.contextPath}/productos">Seguir comprando</a></p>
-<p><a href="${pageContext.request.contextPath}/index.html">Volver</a></p>
-
-</body>
-</html>
+<jsp:include page="layout/footer.jsp" />

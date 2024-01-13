@@ -30,6 +30,7 @@ public class ProductoServlet extends HttpServlet {
 
         req.setAttribute("productos", products);
         req.setAttribute("username", usernameOptional);
+        req.setAttribute("title", "Listado de productos");
         getServletContext().getRequestDispatcher("/listar.jsp").forward(req, resp);
     }
 }

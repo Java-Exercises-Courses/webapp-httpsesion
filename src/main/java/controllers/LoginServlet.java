@@ -21,23 +21,10 @@ public class LoginServlet extends HttpServlet {
         Optional<String> usernameOptional = loginService.getUsername(req);
 
         if (usernameOptional.isPresent()) {
-            resp.setContentType("text/html;charset=UTF-8");
-            try (PrintWriter out = resp.getWriter()) {
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("   <head");
-                out.println("       <meta charset=\"UTF-8\">");
-                out.println("       <title>Hola" + usernameOptional.get() + "</title>");
-                out.println("   </head>");
-                out.println("   <body>");
-                out.println("       <h1>Login Correcto!</h1>");
-                out.println("       <h3>Hola " + usernameOptional.get() + " iniciaste sesión!</h3>");
-                out.println("       <p><a href='" + req.getContextPath() +"/index.html'>Volver</a></p>");
-                out.println("       <p><a href='" + req.getContextPath() +"/logout.html'>Cerrar Sesión</a></p>");
-                out.println("   </body>");
-                out.println("</html>");
-            }
+            req.setAttribute("title", "Hola " + usernameOptional.get());
+            getServletContext().getRequestDispatcher("/success-login.jsp").forward(req, resp);
         } else {
+            req.setAttribute("title", "Login");
             getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
         }
     }

@@ -23,6 +23,7 @@ public class AplicacionListener implements ServletContextListener, ServletReques
     public void requestInitialized(ServletRequestEvent sre) {
         servletContext.log("Inicializando el request");
         sre.getServletRequest().setAttribute("mensaje", "valor nuevo en request");
+        sre.getServletRequest().setAttribute("title", "Catálogo Servlet");
     }
     @Override
     public void sessionCreated(HttpSessionEvent se) {
