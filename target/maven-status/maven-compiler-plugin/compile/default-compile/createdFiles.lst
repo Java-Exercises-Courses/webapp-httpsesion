@@ -5,6 +5,7 @@ models/ProductDTO.class
 filters/ConectionFilter.class
 services/ServiceException.class
 services/impl/UserServiceImpl.class
+controllers/UsuarioEliminarServlet.class
 models/Carro.class
 controllers/UsuarioServlet.class
 repositories/impl/ProductoRepositoryImpl.class

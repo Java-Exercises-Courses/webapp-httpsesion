@@ -10,7 +10,7 @@
 <jsp:include page="layout/header.jsp" />
 <h3>${title}</h3>
 <c:if test="${username.present}">
-    <a href="${pageContext.request.contextPath}/usuarios/form">Crear [+]</a>
+    <a class="btn btn-primary my-2" href="${pageContext.request.contextPath}/usuarios/form">Crear [+]</a>
 </c:if>
 <table class="table table-hover table-striped">
     <tr>
@@ -28,8 +28,8 @@
         <td>${u.password}</td>
         <td>${u.email}</td>
         <c:if test="${username.present}">
-            <td><a href="${pageContext.request.contextPath}/usuarios/form?id=${u.id}"></a></td>
-            <td><a onclick="return confirm('¿Seguro que desea eliminar este producto?')" href="${pageContext.request.contextPath}/usuarios/eliminar?id=4${u.id}">Eliminar</a></td>
+            <td><a class="btn btn-sm btn-success" href="${pageContext.request.contextPath}/usuarios/form?id=${u.id}">Editar</a></td>
+            <td><a class="btn btn-sm btn-danger" onclick="return confirm('¿Seguro que desea eliminar este producto?')" href="${pageContext.request.contextPath}/usuarios/eliminar?id=${u.id}">Eliminar</a></td>
         </c:if>
     </tr>
     </c:forEach>

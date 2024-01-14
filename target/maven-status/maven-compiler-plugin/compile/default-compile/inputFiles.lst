@@ -23,6 +23,7 @@
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/controllers/UsuarioServlet.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/controllers/ActualizarCarroServlet.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/services/impl/LoginServiceImpl.java
+/Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/controllers/UsuarioEliminarServlet.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/controllers/ProductoFormServlet.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/controllers/UsuarioFormServlet.java
 /Users/jmora/IdeaProjects/webapp-httpsesion/src/main/java/services/impl/ProductServiceImpl.java
