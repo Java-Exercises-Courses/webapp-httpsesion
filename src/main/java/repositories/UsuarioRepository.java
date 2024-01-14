@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface UsuarioRepository {
     Usuario byUsername(String username) throws SQLException;
+    Usuario byId(Long id) throws SQLException;
     List<Usuario> listar() throws SQLException;
 
     void save(Usuario usuario) throws SQLException;

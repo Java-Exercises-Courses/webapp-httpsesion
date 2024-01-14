@@ -29,6 +29,21 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
     }
 
     @Override
+    public Usuario byId(Long id) throws SQLException {
+        Usuario usuario = null;
+        try (PreparedStatement stmt = conn.prepareStatement("SELECT  * FROM shopping_car.usuarios WHERE id = ?")) {
+            stmt.setLong(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    usuario = getUsuario(rs);
+                }
+            }
+        }
+
+        return usuario;
+    }
+
+    @Override
     public List<Usuario> listar() throws SQLException {
         List<Usuario> usuarios = new ArrayList<>();
 
@@ -68,7 +83,11 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
 
     @Override
     public void delete(Long id) throws SQLException {
-
+        String sql = "DELETE FROM shopping_car.usuarios WHERE id=?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+        }
     }
 
     private Usuario getUsuario(ResultSet rs) throws SQLException {
