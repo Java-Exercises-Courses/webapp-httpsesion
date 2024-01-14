@@ -32,6 +32,37 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Usuario> getUsers() {
-        return null;
+        try {
+            return usuarioRepository.listar();
+        } catch (SQLException e) {
+            throw new ServiceException(e.getMessage(), e.getCause());
+        }
+    }
+
+    @Override
+    public Optional<Usuario> getById(Long id) {
+        try {
+            return Optional.ofNullable(usuarioRepository.byId(id));
+        } catch (SQLException e) {
+            throw new ServiceException(e.getMessage(), e.getCause());
+        }
+    }
+
+    @Override
+    public void save(Usuario usuario) {
+        try {
+            usuarioRepository.save(usuario);
+        } catch (SQLException e) {
+            throw new ServiceException(e.getMessage(), e.getCause());
+        }
+    }
+
+    @Override
+    public void eliminar(Long id) {
+        try {
+            usuarioRepository.delete(id);
+        } catch (SQLException e) {
+            throw new ServiceException(e.getMessage(), e.getCause());
+        }
     }
 }

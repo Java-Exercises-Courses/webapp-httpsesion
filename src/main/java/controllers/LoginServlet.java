@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
         if (usuarioOptional.isPresent()) {
             HttpSession session = req.getSession();
 
-            session.setAttribute("username", username);
+            session.setAttribute("username", usuarioOptional.get().getUsername());
 
             resp.sendRedirect(req.getContextPath() + "/login.html");
         } else {

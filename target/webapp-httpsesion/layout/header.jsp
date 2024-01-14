@@ -18,6 +18,9 @@
                     <a class="nav-link" href="${pageContext.request.contextPath}/productos">Productos</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/usuarios">Usuarios</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/carro/ver">Carro de compras (${sessionScope.carro.items.size()})</a>
                 </li>
                 <li class="nav-item dropdown">
