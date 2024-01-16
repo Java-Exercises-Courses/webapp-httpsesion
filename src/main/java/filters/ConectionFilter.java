@@ -3,8 +3,9 @@ package filters;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletResponse;
-import util.ConectionDB;
+import util.ConectionDBDS;
 
+import javax.naming.NamingException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ import java.sql.SQLException;
 public class ConectionFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        try(Connection conn = ConectionDB.getConnection()) {
+        try(Connection conn = ConectionDBDS.getConnection()) {
             if (conn.getAutoCommit()) {
                 conn.setAutoCommit(false);
             }
@@ -27,7 +28,7 @@ public class ConectionFilter implements Filter {
                 ((HttpServletResponse)servletResponse).sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,  e.getMessage());
                 e.printStackTrace();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NamingException e) {
             e.printStackTrace();
         }
     }
