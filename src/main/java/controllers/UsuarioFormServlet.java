@@ -1,5 +1,6 @@
 package controllers;
 
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,11 +18,12 @@ import java.util.Optional;
 
 @WebServlet("/usuarios/form")
 public class UsuarioFormServlet extends HttpServlet {
+
+    @Inject
+    private UserService userService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Connection conn = (Connection) req.getAttribute("conn");
-        UserService userService = new UserServiceImpl(conn);
-
         long id;
         try {
             id = Long.parseLong(req.getParameter("id"));
@@ -45,9 +47,6 @@ public class UsuarioFormServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Connection conn = (Connection) req.getAttribute("conn");
-        UserService userService = new UserServiceImpl(conn);
-
         long id;
         try {
             id = Long.parseLong(req.getParameter("id"));

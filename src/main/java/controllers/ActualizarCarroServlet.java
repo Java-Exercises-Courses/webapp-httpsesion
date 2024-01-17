@@ -1,5 +1,6 @@
 package controllers;
 
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,11 +16,12 @@ import java.util.List;
 
 @WebServlet("/carro/actualizar")
 public class ActualizarCarroServlet extends HttpServlet {
+
+    @Inject
+    private Carro carro;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-
-        Carro carro = (Carro) session.getAttribute("carro");
         updateCantidades(req,carro);
         updateProductos(req, carro);
 

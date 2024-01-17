@@ -1,5 +1,8 @@
 package repositories.impl;
 
+import config.MysqlConn;
+import config.Repository;
+import jakarta.inject.Inject;
 import models.Categoria;
 import repositories.CategoriaRepository;
 
@@ -7,11 +10,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class CategoriaRepositoryImpl implements CategoriaRepository {
 
     private Connection conn;
 
-    public CategoriaRepositoryImpl(Connection conn) {
+    @Inject
+    public CategoriaRepositoryImpl(@MysqlConn Connection conn) {
         this.conn = conn;
     }
 

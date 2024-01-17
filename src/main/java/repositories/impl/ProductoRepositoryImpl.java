@@ -1,18 +1,35 @@
 package repositories.impl;
 
+import config.MysqlConn;
+import config.Repository;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.inject.Inject;
 import models.Categoria;
 import models.ProductDTO;
-import repositories.Repository;
+import repositories.ProductRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductoRepositoryImpl implements Repository<ProductDTO> {
+@Repository
+public class ProductoRepositoryImpl implements ProductRepository<ProductDTO> {
+
+    @Inject
+    @MysqlConn
     private Connection conn;
 
-    public ProductoRepositoryImpl(Connection conn) {
-        this.conn = conn;
+    public ProductoRepositoryImpl() {}
+
+    @PostConstruct
+    public void init() {
+        System.out.println("Inicializando el bean " + this.getClass().getName());
+    }
+
+    @PreDestroy
+    public void destroy(){
+        System.out.println("Destruyendo el bean " + this.getClass().getName());
     }
 
     @Override

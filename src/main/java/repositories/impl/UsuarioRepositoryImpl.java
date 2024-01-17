@@ -1,18 +1,21 @@
 package repositories.impl;
 
+import config.MysqlConn;
+import config.Repository;
+import jakarta.inject.Inject;
 import models.Usuario;
 import repositories.UsuarioRepository;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class UsuarioRepositoryImpl implements UsuarioRepository {
-    Connection conn;
+    @Inject
+    @MysqlConn
+    private Connection conn;
 
-    public UsuarioRepositoryImpl(Connection conn) {
-        this.conn = conn;
-    }
+    public UsuarioRepositoryImpl() {}
 
     @Override
     public Usuario byUsername(String username) throws SQLException {

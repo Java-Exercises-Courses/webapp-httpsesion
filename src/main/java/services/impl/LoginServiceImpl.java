@@ -1,11 +1,13 @@
 package services.impl;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import services.LoginService;
 
 import java.util.Optional;
 
+@ApplicationScoped
 public class LoginServiceImpl implements LoginService {
     @Override
     public Optional<String> getUsername(HttpServletRequest req) {

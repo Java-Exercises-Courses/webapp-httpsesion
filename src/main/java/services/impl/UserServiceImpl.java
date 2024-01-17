@@ -1,23 +1,24 @@
 package services.impl;
 
+import config.Service;
+import jakarta.inject.Inject;
 import models.Usuario;
 import repositories.UsuarioRepository;
-import repositories.impl.UsuarioRepositoryImpl;
 import services.ServiceException;
 import services.UserService;
-
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     private UsuarioRepository usuarioRepository;
 
-    public UserServiceImpl(Connection connection) {
-        this.usuarioRepository = new UsuarioRepositoryImpl(connection);
+    @Inject
+    public UserServiceImpl(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
     }
 
     @Override
