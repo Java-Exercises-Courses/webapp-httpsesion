@@ -1,5 +1,6 @@
 package controllers;
 
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -7,18 +8,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.ProductDTO;
 import services.ProductService;
-import services.impl.ProductServiceImpl;
-
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.Optional;
 
 @WebServlet("/productos/eliminar")
 public class ProductoEliminarServlet extends HttpServlet {
+
+    @Inject
+    private ProductService productService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Connection conn = (Connection) req.getAttribute("conn");
-        ProductService productService= new ProductServiceImpl(conn);
         long id;
         try {
             id = Long.parseLong(req.getParameter("id"));

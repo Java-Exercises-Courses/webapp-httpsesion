@@ -1,5 +1,6 @@
 package controllers;
 
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,11 +19,12 @@ import java.util.Optional;
 
 @WebServlet("/usuarios")
 public class UsuarioServlet extends HttpServlet {
+
+    @Inject
+    private UserService userService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Connection conn = (Connection) req.getAttribute("conn");
-
-        UserService userService = new UserServiceImpl(conn);
         List<Usuario> usuarios = userService.getUsers();
 
         LoginService loginService = new LoginServiceImpl();

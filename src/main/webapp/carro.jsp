@@ -11,7 +11,7 @@
 <jsp:include page="layout/header.jsp" />
 <h3>${title}</h3>
 <c:choose>
-<c:when test="${sessionScope.carro.items.isEmpty()}">
+<c:when test="${carro.items.isEmpty()}">
 <div class="alert alert-warning">Lo Sentimos, no hay productos en el carro de compras</div>
 </c:when>
 

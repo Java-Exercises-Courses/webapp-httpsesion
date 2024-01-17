@@ -1,25 +1,26 @@
 package controllers;
 
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import models.Usuario;
 import services.LoginService;
 import services.UserService;
-import services.impl.LoginServiceImpl;
-import services.impl.UserServiceImpl;
-
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
 import java.util.Optional;
 
 @WebServlet({"/login", "/login.html"})
 public class LoginServlet extends HttpServlet {
 
+    @Inject
+    private UserService userService;
+
+    @Inject
+    private LoginService loginService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LoginService loginService = new LoginServiceImpl();
         Optional<String> usernameOptional = loginService.getUsername(req);
 
         if (usernameOptional.isPresent()) {
@@ -36,7 +37,6 @@ public class LoginServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        UserService userService = new UserServiceImpl((Connection) req.getAttribute("conn"));
         Optional<Usuario> usuarioOptional = userService.getByUsername(username, password);
 
         if (usuarioOptional.isPresent()) {

@@ -1,33 +1,33 @@
 package services.impl;
 
+import config.Service;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import models.Categoria;
 import models.ProductDTO;
 import repositories.CategoriaRepository;
-import repositories.Repository;
-import repositories.impl.CategoriaRepositoryImpl;
-import repositories.impl.ProductoRepositoryImpl;
+import repositories.ProductRepository;
 import services.ProductService;
 import services.ServiceException;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ProductServiceImpl implements ProductService {
 
-    private final Repository<ProductDTO> repository;
-    private final CategoriaRepository categoriaRepository;
+    @Inject
+    private ProductRepository<ProductDTO> productRepository;
+    @Inject
+    private CategoriaRepository categoriaRepository;
 
-    public ProductServiceImpl(Connection connection) {
-        this.repository = new ProductoRepositoryImpl(connection);
-        this.categoriaRepository = new CategoriaRepositoryImpl(connection);
-    }
+    public ProductServiceImpl() {}
 
     @Override
     public List<ProductDTO> getProducts() {
         try {
-            return repository.listar();
+            return productRepository.listar();
         } catch (SQLException e) {
             throw new ServiceException(e.getMessage(), e.getCause());
         }
@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Optional<ProductDTO> getById(Long id) {
         try {
-            return Optional.ofNullable(repository.getById(id));
+            return Optional.ofNullable(productRepository.getById(id));
         } catch (SQLException e) {
             throw new ServiceException(e.getMessage(), e.getCause());
         }
@@ -45,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void save(ProductDTO productDTO) {
         try {
-            repository.save(productDTO);
+            productRepository.save(productDTO);
         } catch (SQLException e) {
             throw new ServiceException(e.getMessage(), e.getCause());
         }
@@ -54,7 +54,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void eliminar(Long id) {
         try {
-            repository.eliminar(id);
+            productRepository.eliminar(id);
         } catch (SQLException e) {
             throw new ServiceException(e.getMessage(), e.getCause());
         }

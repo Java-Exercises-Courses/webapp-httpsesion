@@ -1,14 +1,28 @@
 package models;
 
+import config.CarroCompra;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Carro {
+@CarroCompra
+public class Carro implements Serializable {
     private List<ItemCarro> items;
 
-    public Carro() {
+    public Carro() {}
+
+    @PostConstruct
+    public void init() {
         this.items = new ArrayList<>();
+    }
+
+    @PreDestroy
+    public void destroy(){
+        System.out.println("Destruyendo el carro de compras");
     }
 
     public List<ItemCarro> getItems() {
