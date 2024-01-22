@@ -3,14 +3,16 @@ package repositories.impl;
 import config.MysqlConn;
 import config.Repository;
 import jakarta.inject.Inject;
-import models.Categoria;
+import models.entities.Categoria;
 import repositories.CategoriaRepository;
+import repositories.RepositoryJdbc;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@RepositoryJdbc
 public class CategoriaRepositoryImpl implements CategoriaRepository {
 
     private Connection conn;

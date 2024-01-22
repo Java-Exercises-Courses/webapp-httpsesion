@@ -1,25 +1,28 @@
 package services.impl;
 
 import config.Service;
-import jakarta.enterprise.context.ApplicationScoped;
+import interceptors.TransactionalJpa;
 import jakarta.inject.Inject;
-import models.Categoria;
-import models.ProductDTO;
+import models.entities.Categoria;
+import models.entities.ProductDTO;
 import repositories.CategoriaRepository;
 import repositories.ProductRepository;
+import repositories.RepositoryJpa;
 import services.ProductService;
 import services.ServiceException;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@TransactionalJpa
 public class ProductServiceImpl implements ProductService {
 
     @Inject
+    @RepositoryJpa
     private ProductRepository<ProductDTO> productRepository;
     @Inject
+    @RepositoryJpa
     private CategoriaRepository categoriaRepository;
 
     public ProductServiceImpl() {}
@@ -28,7 +31,7 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductDTO> getProducts() {
         try {
             return productRepository.listar();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new ServiceException(e.getMessage(), e.getCause());
         }
     }
@@ -37,7 +40,7 @@ public class ProductServiceImpl implements ProductService {
     public Optional<ProductDTO> getById(Long id) {
         try {
             return Optional.ofNullable(productRepository.getById(id));
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new ServiceException(e.getMessage(), e.getCause());
         }
     }
@@ -46,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
     public void save(ProductDTO productDTO) {
         try {
             productRepository.save(productDTO);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new ServiceException(e.getMessage(), e.getCause());
         }
     }
@@ -55,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
     public void eliminar(Long id) {
         try {
             productRepository.eliminar(id);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new ServiceException(e.getMessage(), e.getCause());
         }
     }
@@ -64,7 +67,7 @@ public class ProductServiceImpl implements ProductService {
     public List<Categoria> listarCategoria() {
         try {
             return categoriaRepository.listar();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new ServiceException(e.getMessage(), e.getCause());
         }
     }
@@ -73,7 +76,7 @@ public class ProductServiceImpl implements ProductService {
     public Optional<Categoria> getCategoriaById(Long id) {
         try {
             return Optional.ofNullable(categoriaRepository.getById(id));
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new ServiceException(e.getMessage(), e.getCause());
         }
     }

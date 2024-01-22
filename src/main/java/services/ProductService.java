@@ -1,7 +1,7 @@
 package services;
 
-import models.Categoria;
-import models.ProductDTO;
+import models.entities.Categoria;
+import models.entities.ProductDTO;
 
 import java.util.List;
 import java.util.Optional;

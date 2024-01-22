@@ -1,15 +1,14 @@
 package repositories;
 
-import models.Usuario;
+import models.entities.Usuario;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface UsuarioRepository {
-    Usuario byUsername(String username) throws SQLException;
-    Usuario byId(Long id) throws SQLException;
-    List<Usuario> listar() throws SQLException;
+    Usuario byUsername(String username) throws Exception;
+    Usuario byId(Long id) throws Exception;
+    List<Usuario> listar() throws Exception;
 
-    void save(Usuario usuario) throws SQLException;
-    void delete(Long id) throws SQLException;
+    void save(Usuario usuario) throws Exception;
+    void delete(Long id) throws Exception;
 }

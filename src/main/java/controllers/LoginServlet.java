@@ -4,7 +4,7 @@ import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import models.Usuario;
+import models.entities.Usuario;
 import services.LoginService;
 import services.UserService;
 import java.io.IOException;

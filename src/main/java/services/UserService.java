@@ -1,6 +1,6 @@
 package services;
 
-import models.Usuario;
+import models.entities.Usuario;
 
 import java.util.List;
 import java.util.Optional;
