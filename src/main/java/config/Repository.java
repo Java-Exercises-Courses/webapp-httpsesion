@@ -1,6 +1,6 @@
 package config;
 
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.inject.Stereotype;
 import jakarta.inject.Named;
 
@@ -9,7 +9,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@ApplicationScoped
+@RequestScoped
 @Named
 @Stereotype
 @Retention(RetentionPolicy.RUNTIME)

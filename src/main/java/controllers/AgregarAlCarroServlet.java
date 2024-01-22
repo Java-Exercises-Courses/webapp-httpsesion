@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.Carro;
 import models.ItemCarro;
-import models.ProductDTO;
+import models.entities.ProductDTO;
 import services.ProductService;
 import java.io.IOException;
 import java.util.Optional;

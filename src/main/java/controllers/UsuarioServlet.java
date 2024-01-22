@@ -6,14 +6,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.Usuario;
+import models.entities.Usuario;
 import services.LoginService;
 import services.UserService;
 import services.impl.LoginServiceImpl;
-import services.impl.UserServiceImpl;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.List;
 import java.util.Optional;
 

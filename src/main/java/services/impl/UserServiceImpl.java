@@ -1,23 +1,25 @@
 package services.impl;
 
 import config.Service;
+import interceptors.TransactionalJpa;
 import jakarta.inject.Inject;
-import models.Usuario;
+import models.entities.Usuario;
+import repositories.RepositoryJpa;
 import repositories.UsuarioRepository;
 import services.ServiceException;
 import services.UserService;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@TransactionalJpa
 public class UserServiceImpl implements UserService {
 
     private UsuarioRepository usuarioRepository;
 
     @Inject
-    public UserServiceImpl(UsuarioRepository usuarioRepository) {
+    public UserServiceImpl(@RepositoryJpa UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
 
@@ -26,7 +28,7 @@ public class UserServiceImpl implements UserService {
         try {
             return Optional.ofNullable(usuarioRepository.byUsername(username))
                     .filter(usuario -> Objects.equals(usuario.getPassword(), password));
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new ServiceException(e.getMessage(), e.getCause());
         }
     }
@@ -35,7 +37,7 @@ public class UserServiceImpl implements UserService {
     public List<Usuario> getUsers() {
         try {
             return usuarioRepository.listar();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new ServiceException(e.getMessage(), e.getCause());
         }
     }
@@ -44,7 +46,7 @@ public class UserServiceImpl implements UserService {
     public Optional<Usuario> getById(Long id) {
         try {
             return Optional.ofNullable(usuarioRepository.byId(id));
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new ServiceException(e.getMessage(), e.getCause());
         }
     }
@@ -53,7 +55,7 @@ public class UserServiceImpl implements UserService {
     public void save(Usuario usuario) {
         try {
             usuarioRepository.save(usuario);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new ServiceException(e.getMessage(), e.getCause());
         }
     }
@@ -62,7 +64,7 @@ public class UserServiceImpl implements UserService {
     public void eliminar(Long id) {
         try {
             usuarioRepository.delete(id);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new ServiceException(e.getMessage(), e.getCause());
         }
     }

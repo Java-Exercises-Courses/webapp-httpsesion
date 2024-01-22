@@ -5,15 +5,17 @@ import config.Repository;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.inject.Inject;
-import models.Categoria;
-import models.ProductDTO;
+import models.entities.Categoria;
+import models.entities.ProductDTO;
 import repositories.ProductRepository;
+import repositories.RepositoryJdbc;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@RepositoryJdbc
 public class ProductoRepositoryImpl implements ProductRepository<ProductDTO> {
 
     @Inject

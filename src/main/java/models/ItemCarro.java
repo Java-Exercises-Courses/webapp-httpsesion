@@ -1,5 +1,7 @@
 package models;
 
+import models.entities.ProductDTO;
+
 import java.util.Objects;
 
 public class ItemCarro {

@@ -1,11 +1,10 @@
 package repositories;
 
-import models.Categoria;
+import models.entities.Categoria;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface CategoriaRepository {
-    List<Categoria> listar() throws SQLException;
-    Categoria getById(Long id) throws SQLException;
+    List<Categoria> listar() throws Exception;
+    Categoria getById(Long id) throws Exception;
 }

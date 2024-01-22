@@ -3,13 +3,15 @@ package repositories.impl;
 import config.MysqlConn;
 import config.Repository;
 import jakarta.inject.Inject;
-import models.Usuario;
+import models.entities.Usuario;
+import repositories.RepositoryJdbc;
 import repositories.UsuarioRepository;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@RepositoryJdbc
 public class UsuarioRepositoryImpl implements UsuarioRepository {
     @Inject
     @MysqlConn
