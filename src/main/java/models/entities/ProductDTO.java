@@ -13,6 +13,7 @@ public class ProductDTO {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
     private Categoria categoria;
     private int price;
     private String sku;
