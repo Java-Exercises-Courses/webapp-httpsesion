@@ -1,7 +1,7 @@
 package services.impl;
 
 import config.Service;
-import interceptors.TransactionalJpa;
+import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 import models.entities.Categoria;
 import models.entities.ProductDTO;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@TransactionalJpa
+@Stateless
 public class ProductServiceImpl implements ProductService {
 
     @Inject

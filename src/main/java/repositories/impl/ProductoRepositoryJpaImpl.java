@@ -18,7 +18,7 @@ public class ProductoRepositoryJpaImpl implements ProductRepository<ProductDTO> 
 
     @Override
     public List<ProductDTO> listar() throws Exception {
-        return entityManager.createQuery("from ProductDTO", ProductDTO.class).getResultList();
+        return entityManager.createQuery("select p from ProductDTO p left outer join p.categoria", ProductDTO.class).getResultList();
     }
 
     @Override

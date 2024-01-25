@@ -15,7 +15,7 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Optional;
 
-@WebServlet({"/productos.html", "/productos"})
+@WebServlet({"/productos.html", "/productos", "/"})
 public class ProductoServlet extends HttpServlet {
 
     @Inject

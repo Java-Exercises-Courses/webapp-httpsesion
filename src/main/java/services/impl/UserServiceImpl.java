@@ -1,7 +1,7 @@
 package services.impl;
 
 import config.Service;
-import interceptors.TransactionalJpa;
+import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 import models.entities.Usuario;
 import repositories.RepositoryJpa;
@@ -13,7 +13,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-@TransactionalJpa
+@Stateless
 public class UserServiceImpl implements UserService {
 
     private UsuarioRepository usuarioRepository;

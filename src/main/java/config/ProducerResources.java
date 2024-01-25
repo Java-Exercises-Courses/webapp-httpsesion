@@ -6,7 +6,8 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.inject.Disposes;
 import jakarta.enterprise.inject.Produces;
 import jakarta.persistence.EntityManager;
-import util.JpaUtil;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.PersistenceUnit;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -15,8 +16,11 @@ import java.sql.SQLException;
 @ApplicationScoped
 public class ProducerResources {
 
-    @Resource(name = "jdbc/MysqlDB")
+    @Resource(lookup = "java:/MySqlDS")
     private DataSource dataSource;
+
+    @PersistenceUnit(name = "carshopejemplo")
+    private EntityManagerFactory emf;
 
     @Produces
     @RequestScoped
@@ -34,7 +38,7 @@ public class ProducerResources {
     @Produces
     @RequestScoped
     private EntityManager beanEntityManager() {
-        return JpaUtil.getEntityManager();
+        return emf.createEntityManager();
     }
 
     public void close(@Disposes EntityManager entityManager) {

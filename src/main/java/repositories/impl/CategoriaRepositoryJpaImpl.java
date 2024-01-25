@@ -18,7 +18,7 @@ public class CategoriaRepositoryJpaImpl implements CategoriaRepository {
 
     @Override
     public List<Categoria> listar() throws Exception {
-        return entityManager.createQuery("from Categoria", Categoria.class).getResultList();
+        return entityManager.createQuery("select c from Categoria c", Categoria.class).getResultList();
     }
 
     @Override
