@@ -23,4 +23,4 @@ y correr los siguientes comandos para mac
 Ajuste de usuarios de tomcat en el archivo tomcat-users.xml
 <user username="admin" password="1234" roles="admin,manager-gui,manager-script"/>
 
-
+Cambio de servidor de tomcat a wildfly

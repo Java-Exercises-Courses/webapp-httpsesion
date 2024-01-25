@@ -5,8 +5,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.inject.Disposes;
 import jakarta.enterprise.inject.Produces;
-import jakarta.persistence.EntityManager;
-import util.JpaUtil;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -15,7 +13,7 @@ import java.sql.SQLException;
 @ApplicationScoped
 public class ProducerResources {
 
-    @Resource(name = "jdbc/MysqlDB")
+    @Resource(lookup = "java:/MySqlDS")
     private DataSource dataSource;
 
     @Produces
@@ -29,17 +27,5 @@ public class ProducerResources {
     public void close(@Disposes @MysqlConn Connection connection) throws SQLException {
         connection.close();
         System.out.println("Cerrando la conexión a la BD");
-    }
-
-    @Produces
-    @RequestScoped
-    private EntityManager beanEntityManager() {
-        return JpaUtil.getEntityManager();
-    }
-
-    public void close(@Disposes EntityManager entityManager) {
-        if (entityManager.isOpen()){
-            entityManager.close();
-        }
     }
 }
